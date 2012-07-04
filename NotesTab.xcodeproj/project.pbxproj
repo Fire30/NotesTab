@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		325FC43E1590EB7500135B2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325FC43D1590EB7500135B2D /* Foundation.framework */; };
-		325FC4491590EB7500135B2D /* NotesTab.mm in Sources */ = {isa = PBXBuildFile; fileRef = 325FC4481590EB7500135B2D /* NotesTab.mm */; };
+		325FC4491590EB7500135B2D /* NotesTab.mm in Sources */ = {isa = PBXBuildFile; fileRef = 325FC4481590EB7500135B2D /* NotesTab.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		328B623A1592776A00FE399E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328B62391592776A00FE399E /* UIKit.framework */; };
+		32982C98159110970022263B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32982C97159110970022263B /* CoreGraphics.framework */; };
+		32E3D2F41590EC9A00762453 /* libsubstrate.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E3D2F31590EC9A00762453 /* libsubstrate.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,10 +20,14 @@
 		325FC4421590EB7500135B2D /* control.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = control.txt; path = Package/DEBIAN/control.txt; sourceTree = "<group>"; };
 		325FC4431590EB7500135B2D /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
 		325FC4451590EB7500135B2D /* PackageVersion.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PackageVersion.plist; sourceTree = "<group>"; };
-		325FC4461590EB7500135B2D /* NotesTab-Prefix.pch */ = {isa = PBXFileReference; path = "NotesTab-Prefix.pch"; sourceTree = "<group>"; };
-		325FC4471590EB7500135B2D /* NotesTab.xm */ = {isa = PBXFileReference; lastKnownFileType = text; path = NotesTab.xm; sourceTree = "<group>"; };
+		325FC4461590EB7500135B2D /* NotesTab-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NotesTab-Prefix.pch"; sourceTree = "<group>"; };
+		325FC4471590EB7500135B2D /* NotesTab.xm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = NotesTab.xm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		325FC4481590EB7500135B2D /* NotesTab.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = NotesTab.mm; sourceTree = "<group>"; };
 		325FC44D1590EB7500135B2D /* NotesTab.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = NotesTab.plist; path = Package/Library/MobileSubstrate/DynamicLibraries/NotesTab.plist; sourceTree = "<group>"; };
+		328B62391592776A00FE399E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		32982C97159110970022263B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		32982C991591159C0022263B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		32E3D2F31590EC9A00762453 /* libsubstrate.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsubstrate.dylib; path = ../../../../../opt/iOSOpenDev/lib/libsubstrate.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +35,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				328B623A1592776A00FE399E /* UIKit.framework in Frameworks */,
+				32982C98159110970022263B /* CoreGraphics.framework in Frameworks */,
+				32E3D2F41590EC9A00762453 /* libsubstrate.dylib in Frameworks */,
 				325FC43E1590EB7500135B2D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,6 +48,9 @@
 		325FC42D1590EB7400135B2D = {
 			isa = PBXGroup;
 			children = (
+				328B62391592776A00FE399E /* UIKit.framework */,
+				32982C97159110970022263B /* CoreGraphics.framework */,
+				32E3D2F31590EC9A00762453 /* libsubstrate.dylib */,
 				325FC43F1590EB7500135B2D /* NotesTab */,
 				325FC43C1590EB7500135B2D /* Frameworks */,
 				325FC43B1590EB7500135B2D /* Products */,
@@ -55,6 +68,7 @@
 		325FC43C1590EB7500135B2D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32982C991591159C0022263B /* CoreGraphics.framework */,
 				325FC43D1590EB7500135B2D /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -276,15 +290,23 @@
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NotesTab/NotesTab-Prefix.pch";
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/iOSOpenDev/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = "";
-				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevCopyOnBuild = YES;
+				iOSOpenDevDevice = 192.168.1.61;
+				iOSOpenDevInstallOnAnyBuild = YES;
 				iOSOpenDevInstallOnProfiling = NO;
-				iOSOpenDevRespringOnInstall = NO;
+				iOSOpenDevRespringOnInstall = YES;
 				iOSOpenDevUsePackageVersionPList = YES;
 			};
 			name = Release;
@@ -294,15 +316,23 @@
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NotesTab/NotesTab-Prefix.pch";
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/iOSOpenDev/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				iOSOpenDevCopyOnBuild = NO;
-				iOSOpenDevDevice = "";
-				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevCopyOnBuild = YES;
+				iOSOpenDevDevice = 192.168.1.61;
+				iOSOpenDevInstallOnAnyBuild = YES;
 				iOSOpenDevInstallOnProfiling = NO;
-				iOSOpenDevRespringOnInstall = NO;
+				iOSOpenDevRespringOnInstall = YES;
 				iOSOpenDevUsePackageVersionPList = YES;
 			};
 			name = Debug;
@@ -326,6 +356,7 @@
 				325FC4521590EB7500135B2D /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
