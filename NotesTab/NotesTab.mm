@@ -64,16 +64,6 @@ static void _logos_method$_ungrouped$NoteContentLayer$buttonClicked(NoteContentL
 
 
 
-
-
-
-
-
-
-
-
-
-
 static UITextView * _logos_method$_ungrouped$NoteContentLayer$textView(NoteContentLayer* self, SEL _cmd) {
     itextView = _logos_orig$_ungrouped$NoteContentLayer$textView(self, _cmd);
     
@@ -82,4 +72,4 @@ static UITextView * _logos_method$_ungrouped$NoteContentLayer$textView(NoteConte
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$NoteContentLayer = objc_getClass("NoteContentLayer"); MSHookMessageEx(_logos_class$_ungrouped$NoteContentLayer, @selector(handleKeyboardShow:), (IMP)&_logos_method$_ungrouped$NoteContentLayer$handleKeyboardShow$, (IMP*)&_logos_orig$_ungrouped$NoteContentLayer$handleKeyboardShow$);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$NoteContentLayer, @selector(buttonClicked), (IMP)&_logos_method$_ungrouped$NoteContentLayer$buttonClicked, _typeEncoding); }MSHookMessageEx(_logos_class$_ungrouped$NoteContentLayer, @selector(textView), (IMP)&_logos_method$_ungrouped$NoteContentLayer$textView, (IMP*)&_logos_orig$_ungrouped$NoteContentLayer$textView);}  }
-#line 77 "/Users/tj/Documents/iOS Development/NotesTab/NotesTab/NotesTab.xm"
+#line 67 "/Users/tj/Documents/iOS Development/NotesTab/NotesTab/NotesTab.xm"

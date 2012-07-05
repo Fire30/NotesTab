@@ -56,16 +56,6 @@ UITextView *itextView;
     itextView.text = itext;
 }
 
-/*
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range  replacementText:(NSString *)text
-{
-    itextView = textView;
-    
-    return %orig;
-    
-  
-}
- */
 
 - (UITextView *)textView
 {
