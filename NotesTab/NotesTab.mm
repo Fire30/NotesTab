@@ -17,7 +17,7 @@
 
 #include <substrate.h>
 @class NoteContentLayer; 
-static void (*_logos_orig$_ungrouped$NoteContentLayer$handleKeyboardShow$)(NoteContentLayer*, SEL, id); static void _logos_method$_ungrouped$NoteContentLayer$handleKeyboardShow$(NoteContentLayer*, SEL, id); static void _logos_method$_ungrouped$NoteContentLayer$buttonClicked(NoteContentLayer*, SEL); static BOOL (*_logos_orig$_ungrouped$NoteContentLayer$textView$shouldChangeTextInRange$replacementText$)(NoteContentLayer*, SEL, UITextView *, NSRange, NSString *); static BOOL _logos_method$_ungrouped$NoteContentLayer$textView$shouldChangeTextInRange$replacementText$(NoteContentLayer*, SEL, UITextView *, NSRange, NSString *); 
+static void (*_logos_orig$_ungrouped$NoteContentLayer$handleKeyboardShow$)(NoteContentLayer*, SEL, id); static void _logos_method$_ungrouped$NoteContentLayer$handleKeyboardShow$(NoteContentLayer*, SEL, id); static void _logos_method$_ungrouped$NoteContentLayer$buttonClicked(NoteContentLayer*, SEL); static UITextView * (*_logos_orig$_ungrouped$NoteContentLayer$textView)(NoteContentLayer*, SEL); static UITextView * _logos_method$_ungrouped$NoteContentLayer$textView(NoteContentLayer*, SEL); 
 
 #line 17 "/Users/tj/Documents/iOS Development/NotesTab/NotesTab/NotesTab.xm"
 
@@ -47,6 +47,7 @@ static void _logos_method$_ungrouped$NoteContentLayer$handleKeyboardShow$(NoteCo
     
 		keyboard = [tempWindow.subviews objectAtIndex:0];
         [keyboard addSubview:toolbar];
+   
 
 	}
 
@@ -62,14 +63,23 @@ static void _logos_method$_ungrouped$NoteContentLayer$buttonClicked(NoteContentL
 }
 
 
-static BOOL _logos_method$_ungrouped$NoteContentLayer$textView$shouldChangeTextInRange$replacementText$(NoteContentLayer* self, SEL _cmd, UITextView * textView, NSRange range, NSString * text) {
-    itextView = textView;
+
+
+
+
+
+
+
+
+
+
+
+static UITextView * _logos_method$_ungrouped$NoteContentLayer$textView(NoteContentLayer* self, SEL _cmd) {
+    itextView = _logos_orig$_ungrouped$NoteContentLayer$textView(self, _cmd);
     
-    return _logos_orig$_ungrouped$NoteContentLayer$textView$shouldChangeTextInRange$replacementText$(self, _cmd, textView, range, text);
-    
-  
+    return _logos_orig$_ungrouped$NoteContentLayer$textView(self, _cmd);
 }
 
 static __attribute__((constructor)) void _logosLocalInit() {
-{Class _logos_class$_ungrouped$NoteContentLayer = objc_getClass("NoteContentLayer"); MSHookMessageEx(_logos_class$_ungrouped$NoteContentLayer, @selector(handleKeyboardShow:), (IMP)&_logos_method$_ungrouped$NoteContentLayer$handleKeyboardShow$, (IMP*)&_logos_orig$_ungrouped$NoteContentLayer$handleKeyboardShow$);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$NoteContentLayer, @selector(buttonClicked), (IMP)&_logos_method$_ungrouped$NoteContentLayer$buttonClicked, _typeEncoding); }MSHookMessageEx(_logos_class$_ungrouped$NoteContentLayer, @selector(textView:shouldChangeTextInRange:replacementText:), (IMP)&_logos_method$_ungrouped$NoteContentLayer$textView$shouldChangeTextInRange$replacementText$, (IMP*)&_logos_orig$_ungrouped$NoteContentLayer$textView$shouldChangeTextInRange$replacementText$);}  }
-#line 67 "/Users/tj/Documents/iOS Development/NotesTab/NotesTab/NotesTab.xm"
+{Class _logos_class$_ungrouped$NoteContentLayer = objc_getClass("NoteContentLayer"); MSHookMessageEx(_logos_class$_ungrouped$NoteContentLayer, @selector(handleKeyboardShow:), (IMP)&_logos_method$_ungrouped$NoteContentLayer$handleKeyboardShow$, (IMP*)&_logos_orig$_ungrouped$NoteContentLayer$handleKeyboardShow$);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$NoteContentLayer, @selector(buttonClicked), (IMP)&_logos_method$_ungrouped$NoteContentLayer$buttonClicked, _typeEncoding); }MSHookMessageEx(_logos_class$_ungrouped$NoteContentLayer, @selector(textView), (IMP)&_logos_method$_ungrouped$NoteContentLayer$textView, (IMP*)&_logos_orig$_ungrouped$NoteContentLayer$textView);}  }
+#line 77 "/Users/tj/Documents/iOS Development/NotesTab/NotesTab/NotesTab.xm"

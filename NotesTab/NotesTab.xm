@@ -41,6 +41,7 @@
     
 		keyboard = [tempWindow.subviews objectAtIndex:0];
         [keyboard addSubview:toolbar];
+   
 
 	}
 
@@ -55,6 +56,7 @@ UITextView *itextView;
     itextView.text = itext;
 }
 
+/*
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range  replacementText:(NSString *)text
 {
     itextView = textView;
@@ -62,5 +64,13 @@ UITextView *itextView;
     return %orig;
     
   
+}
+ */
+
+- (UITextView *)textView
+{
+    itextView = %orig;
+    
+    return %orig;
 }
 %end
