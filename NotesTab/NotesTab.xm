@@ -16,6 +16,8 @@
 
 %hook NoteContentLayer
 
+UITextView *itextView;
+
 - (void)handleKeyboardShow:(id)fp8
 {
     %orig;
@@ -27,7 +29,7 @@
     [keyBounds getValue:&bndKey];
     
     
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, -40, bndKey.size.width + 300 , 40)];
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, -40, 9001 , 40)];
  
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"  Tab  " style:UIBarButtonItemStyleBordered target:self action:@selector(buttonClicked)];
 	NSArray *items = [[NSArray alloc] initWithObjects:barButtonItem, nil];
@@ -37,24 +39,12 @@
     
 	UIWindow* tempWindow = [[[UIApplication sharedApplication] windows] objectAtIndex:1];
 	UIView* keyboard;
-		//Get a reference of the current view 
     
 		keyboard = [tempWindow.subviews objectAtIndex:0];
         [keyboard addSubview:toolbar];
    
 
 	}
-
-UITextView *itextView;
-
-%new
-- (void) buttonClicked
-{
-    NSMutableString *itext = [itextView.text mutableCopy];
-    NSRange selectedRange = itextView.selectedRange;
-    [itext replaceCharactersInRange:selectedRange withString:@"    "];
-    itextView.text = itext;
-}
 
 
 - (UITextView *)textView
@@ -63,4 +53,16 @@ UITextView *itextView;
     
     return %orig;
 }
+
+%new
+
+- (void) buttonClicked
+{
+    NSMutableString *itext = [itextView.text mutableCopy];
+    NSRange selectedRange = itextView.selectedRange;
+    [itext replaceCharactersInRange:selectedRange withString:@"\t"];
+    itextView.text = itext;
+}
+
+
 %end
