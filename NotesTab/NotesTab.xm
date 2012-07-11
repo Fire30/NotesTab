@@ -53,25 +53,34 @@ UITextView *itextView;
     return %orig;
 }
 
+NSMutableString *itext;
+NSRange selectedRange;
+
 %new
 
 - (void) buttonClicked
 {
     
-    NSMutableString *itext = [itextView.text mutableCopy];
-    NSRange selectedRange = itextView.selectedRange;
+    itext = [itextView.text mutableCopy];
+    selectedRange = itextView.selectedRange;
     itextView.selectedRange = selectedRange;
+
     
     [itext insertString:@"\t" atIndex:selectedRange.location];
-    
+    itextView.selectedRange = selectedRange;
     itextView.text = itext;
     
-    selectedRange.location = selectedRange.location + 1; // it is the next character. Since we just inputted a tab it will go to the end of the tab. 
     
+    selectedRange.location = selectedRange.location + 1;// it is the next character. Since we just inputted a tab it will go to the end of the tab. 
     itextView.selectedRange = selectedRange;
-    
-    
-}
+    [NSTimer scheduledTimerWithTimeInterval:.07 target:self selector:@selector(scrolling) userInfo:nil repeats:NO];
 
+}
+%new
+
+- (void) scrolling
+{
+   [itextView scrollRangeToVisible:itextView.selectedRange]; 
+}
 
 %end

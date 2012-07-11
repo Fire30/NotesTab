@@ -16,7 +16,7 @@
 
 #include <substrate.h>
 @class NoteContentLayer; 
-static void (*_logos_orig$_ungrouped$NoteContentLayer$handleKeyboardShow$)(NoteContentLayer*, SEL, id); static void _logos_method$_ungrouped$NoteContentLayer$handleKeyboardShow$(NoteContentLayer*, SEL, id); static UITextView * (*_logos_orig$_ungrouped$NoteContentLayer$textView)(NoteContentLayer*, SEL); static UITextView * _logos_method$_ungrouped$NoteContentLayer$textView(NoteContentLayer*, SEL); static void _logos_method$_ungrouped$NoteContentLayer$buttonClicked(NoteContentLayer*, SEL); 
+static void (*_logos_orig$_ungrouped$NoteContentLayer$handleKeyboardShow$)(NoteContentLayer*, SEL, id); static void _logos_method$_ungrouped$NoteContentLayer$handleKeyboardShow$(NoteContentLayer*, SEL, id); static UITextView * (*_logos_orig$_ungrouped$NoteContentLayer$textView)(NoteContentLayer*, SEL); static UITextView * _logos_method$_ungrouped$NoteContentLayer$textView(NoteContentLayer*, SEL); static void _logos_method$_ungrouped$NoteContentLayer$buttonClicked(NoteContentLayer*, SEL); static void _logos_method$_ungrouped$NoteContentLayer$scrolling(NoteContentLayer*, SEL); 
 
 #line 16 "/Users/tj/Documents/iOS Development/NotesTab/NotesTab/NotesTab.xm"
 
@@ -59,28 +59,37 @@ static UITextView * _logos_method$_ungrouped$NoteContentLayer$textView(NoteConte
     return _logos_orig$_ungrouped$NoteContentLayer$textView(self, _cmd);
 }
 
+NSMutableString *itext;
+NSRange selectedRange;
+
 
 
 
 static void _logos_method$_ungrouped$NoteContentLayer$buttonClicked(NoteContentLayer* self, SEL _cmd) {
     
-    NSMutableString *itext = [itextView.text mutableCopy];
-    NSRange selectedRange = itextView.selectedRange;
+    itext = [itextView.text mutableCopy];
+    selectedRange = itextView.selectedRange;
     itextView.selectedRange = selectedRange;
+
     
     [itext insertString:@"\t" atIndex:selectedRange.location];
-    
+    itextView.selectedRange = selectedRange;
     itextView.text = itext;
     
-    selectedRange.location = selectedRange.location + 1; 
     
+    selectedRange.location = selectedRange.location + 1;
     itextView.selectedRange = selectedRange;
-    
-    
+    [NSTimer scheduledTimerWithTimeInterval:.07 target:self selector:@selector(scrolling) userInfo:nil repeats:NO];
+
 }
 
 
 
+static void _logos_method$_ungrouped$NoteContentLayer$scrolling(NoteContentLayer* self, SEL _cmd) {
+   [itextView scrollRangeToVisible:itextView.selectedRange]; 
+}
+
+
 static __attribute__((constructor)) void _logosLocalInit() {
-{Class _logos_class$_ungrouped$NoteContentLayer = objc_getClass("NoteContentLayer"); MSHookMessageEx(_logos_class$_ungrouped$NoteContentLayer, @selector(handleKeyboardShow:), (IMP)&_logos_method$_ungrouped$NoteContentLayer$handleKeyboardShow$, (IMP*)&_logos_orig$_ungrouped$NoteContentLayer$handleKeyboardShow$);MSHookMessageEx(_logos_class$_ungrouped$NoteContentLayer, @selector(textView), (IMP)&_logos_method$_ungrouped$NoteContentLayer$textView, (IMP*)&_logos_orig$_ungrouped$NoteContentLayer$textView);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$NoteContentLayer, @selector(buttonClicked), (IMP)&_logos_method$_ungrouped$NoteContentLayer$buttonClicked, _typeEncoding); }}  }
-#line 78 "/Users/tj/Documents/iOS Development/NotesTab/NotesTab/NotesTab.xm"
+{Class _logos_class$_ungrouped$NoteContentLayer = objc_getClass("NoteContentLayer"); MSHookMessageEx(_logos_class$_ungrouped$NoteContentLayer, @selector(handleKeyboardShow:), (IMP)&_logos_method$_ungrouped$NoteContentLayer$handleKeyboardShow$, (IMP*)&_logos_orig$_ungrouped$NoteContentLayer$handleKeyboardShow$);MSHookMessageEx(_logos_class$_ungrouped$NoteContentLayer, @selector(textView), (IMP)&_logos_method$_ungrouped$NoteContentLayer$textView, (IMP*)&_logos_orig$_ungrouped$NoteContentLayer$textView);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$NoteContentLayer, @selector(buttonClicked), (IMP)&_logos_method$_ungrouped$NoteContentLayer$buttonClicked, _typeEncoding); }{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$NoteContentLayer, @selector(scrolling), (IMP)&_logos_method$_ungrouped$NoteContentLayer$scrolling, _typeEncoding); }}  }
+#line 87 "/Users/tj/Documents/iOS Development/NotesTab/NotesTab/NotesTab.xm"
